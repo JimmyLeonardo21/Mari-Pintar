@@ -1,0 +1,29 @@
+{
+  "name": "Mari-Pintar",
+  "version": "1.0.0",
+  "description": "Pair Project Phase 1 Haktiv 8",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JimmyLeonardo21/Mari-Pintar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JimmyLeonardo21/Mari-Pintar/issues"
+  },
+  "homepage": "https://github.com/JimmyLeonardo21/Mari-Pintar#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "sequelize": "^6.14.1",
+    "sequelize-cli": "^6.4.1"
+  }
+}
