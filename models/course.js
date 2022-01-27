@@ -14,6 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       Course.belongsTo(models.Category)
       Course.hasMany(models.User)
     }
+    static dateFormat(instance){
+      let dt2 = new Date()
+      var diff =(dt2.getTime() - instance.createdDate.getTime()) / 1000;
+      diff /= (60 * 60);
+      return Math.abs(Math.round(diff))
+     
+    }
+    getMinutes(){
+      let duration = `${this.duration} minutes`
+      return duration
+    }
+    static getLength(input){
+
+    }
   };
   Course.init({
     name: DataTypes.STRING,
