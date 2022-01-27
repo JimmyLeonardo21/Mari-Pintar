@@ -54,11 +54,12 @@ class Controller {
         })   
         .then(user => {
             if (user) {
-                console.log(user, "<>><><><>user");
-                console.log(user.id, "<>><><><>user.id");
+               
                 const isValidatPassword = bcrypt.compareSync(password, user.password)
                 if (isValidatPassword) {
                     req.session.userId = user.id
+                    req.session.courseId = user.CourseId
+                    req.session.role = user.Role
                     return res.redirect("/courses")
                 } else {
                     const error = "invalid email or password"
