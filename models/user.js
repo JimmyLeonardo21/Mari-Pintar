@@ -16,11 +16,35 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username:{
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          msg: 'Please enter your e-mail'
+        },
+        isEmail:{
+          msg:'Must be an e-mail.'
+        }
+      }
+    },
+
+    password: {
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          msg: 'Please enter a password'
+        },
+        len: [5,15]
+      }
+    },
     CourseId: DataTypes.INTEGER
   }, {
     sequelize,
+    hooks:{
+      beforeCreate: (data, options) =>{
+        data.role = 'Newbie'
+      }
+    },
     modelName: 'User',
   });
   return User;

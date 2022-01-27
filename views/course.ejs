@@ -1,0 +1,28 @@
+<%-include('./partials/upper.ejs')%>
+<%-include('./partials/bootstrap.ejs')%>
+
+
+
+
+
+  <title class="text-center">data.name</title>
+</head>
+<body>
+
+
+<h1 class="text-center"><%=data.name%></h1>
+
+  <div>
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=PCoyTwltu5g&t=160s" role="button">Watch</a>
+ <p class>Video length: <%=data.duration%> minutes</p>
+  </div>
+
+  <br><br>
+  <h5>More about this course:</h5> 
+  <p> <%=data.description%></p>
+ <br><br>
+  <p>Have you finished the video? Click here to learn more subjects!</p> <a class="btn btn-primary" href="/" role="button">Change Course</a>
+
+</body>
+
+</html>
