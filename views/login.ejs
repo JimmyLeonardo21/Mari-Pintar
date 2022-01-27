@@ -104,6 +104,7 @@ body {
         <h2 class="login-header">Log in</h2>
       
         <form class="login-container" action="/user" method="post">
+          <p><%= sessionError %></p>
           <p><%= error %></p>
           <p><input type="email" placeholder="Email" name="email"></p>
           <p><input type="password" placeholder="Password" name="password"></p>
