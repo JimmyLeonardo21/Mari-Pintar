@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 
 class Controller {
     static getLogin (req, res){
-        const {error} = req.query
-        res.render('login', {error})
+        const {error, sessionError} = req.query
+        res.render('login', {error, sessionError})
     }
     static getRegister(req, res){
         res.render("register")
@@ -54,8 +54,11 @@ class Controller {
         })   
         .then(user => {
             if (user) {
+                console.log(user, "<>><><><>user");
+                console.log(user.id, "<>><><><>user.id");
                 const isValidatPassword = bcrypt.compareSync(password, user.password)
                 if (isValidatPassword) {
+                    req.session.userId = user.id
                     return res.redirect("/courses")
                 } else {
                     const error = "invalid email or password"
@@ -67,7 +70,7 @@ class Controller {
             }
         })
         .catch(err => {
-            console.log(err);
+            console.log(err, "<><><><><>");
             res.send(err)
         }) 
     }
