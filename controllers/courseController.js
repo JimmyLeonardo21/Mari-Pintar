@@ -18,44 +18,67 @@ class Controller {
             }
 
         }
-        let userData
-        console.log(req.query.applyCourse)
-        User.findByPk(req.session.userId)
-            .then(data => {
+        // let userData
+        // console.log(req.query.applyCourse, '>>>>>>>>>>')
+        if(req.query.applyCourse){
+            User.update({ CourseId: +req.query.applyCourse }, {
+                where: {
+                    id: +req.session.userId
+                }
               
-                return User.update({ CourseId: req.query.applyCourse }, {
-                    where: {
-                        id: req.session.userId
-                    }
-                  
-                })
             })
-            .then(data => {
-               
-                return Course.findAll(options)
+            .then(() => {
+                req.session.courseId = +req.query.applyCourse
+                res.redirect('/courses')
             })
+            .catch((err) => {
+                res.send(err)
+            })
+        }else {
+            Course.findAll(options)
             .then(data => {
-               console.log(data[0].dataValues.Category.name, '>>>>>><<<<<')
-                console.log(req.session.role)
-                let Role = req.session.role
-                let CourseId = req.session.courseId
-                console.log(CourseId)
+                const Role = req.session.role
+                const CourseId = req.session.courseId
                 res.render('landing', { data, Role, CourseId })
             })
             .catch(err => {
                 res.send(err)
             })
+        }
+        // User.findByPk(req.session.userId)
+        //     .then(data => {
+              
+        //         return User.update({ CourseId: req.query.applyCourse }, {
+        //             where: {
+        //                 id: req.session.userId
+        //             }
+                  
+        //         })
+        //     })
+        //     .then(data => {
+        //         return Course.findAll(options)
+        //     })
+        //     .then(data => {
+        //         const Role = req.session.role
+        //         const CourseId = req.session.courseId
+        //         res.render('landing', { data, Role, CourseId })
+        //     })
+        //     .catch(err => {
+        //         res.send(err)
+        //     })
     }
     static doCourse(req, res) {
-        let id = req.params.id
+        const id = req.params.id
 
-        Course.findByPk(id, {include: Category})
+        Course.findByPk(+id, {include: Category})
             .then(data => {
-                let link = getYoutube
-                let getDate = Course.dateFormat(data.createdAt)
-                res.render('course', { data: data, Category:Category, link: link, getDate:getDate})
+                const link = getYoutube
+                // console.log(Course.dateFormat, data)
+                // const getDate = data.dateFormat(data.createdAt)
+                res.render('course', { data: data, Category:Category, link: link, getDate: Course.dateFormat})
             })
             .catch(err => {
+                console.log(err, 'MASSSSSUKKKKK')
                 res.send(err)
             })
     }

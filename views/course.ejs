@@ -6,6 +6,15 @@
 
 
   <title class="text-center"><%=data.name%></title>
+  <style>
+    .container{
+      padding: 10px;
+    }
+    .iframe-youtube{
+      display: flex;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,17 +23,19 @@
 <h1 class="text-center"><%=data.name%></h1>
 <h5 class="text-center">Subject: <%=data.Category.name%></h5>
 <br><br>
-  <div class="embed-responsive embed-responsive-16by9">
+  <div class="embed-responsive embed-responsive-16by9 iframe-youtube">
     <iframe width="560" height="315" src="<%=link(data.videoUrl)%>" allowfullscreen></iframe>  
   </div>  
   <br><br>
+  <div class="container">
+    <h5>More about this course:</h5> 
+    <p><%=data.getMinutes()%></p>
+    <p> <%=data.description%></p>
+    <p>Release date: <%=getDate(data.createdAt)%></p>
+   <br><br>
+    <p>Have you finished the video? Click here to learn more subjects!</p> <a class="btn btn-primary" href="/courses" role="button">Change Course</a>
 
-  <h5>More about this course:</h5> 
-  <p><%=data.getMinutes()%></p>
-  <p> <%=data.description%></p>
-  <p><%=getDate(data.createdAt)%></p>
- <br><br>
-  <p>Have you finished the video? Click here to learn more subjects!</p> <a class="btn btn-primary" href="/courses" role="button">Change Course</a>
+  </div>
 
 </body>
 
