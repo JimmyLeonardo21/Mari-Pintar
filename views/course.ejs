@@ -13,15 +13,11 @@
 
 <h1 class="text-center"><%=data.name%></h1>
 <br><br>
-
-   
   <div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/PCoyTwltu5g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
- <p class=>Video length: <%=data.duration%> minutes</p>
-  
-
+    <iframe width="560" height="315" src="<%=data.videoUrl%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+  </div>  
   <br><br>
+ 
   <h5>More about this course:</h5> 
   <p> <%=data.description%></p>
  <br><br>
