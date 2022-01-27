@@ -18,6 +18,13 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </nav>
+      <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search by Name" aria-label="Search" name="categoryName">      
+        
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
 
 
 
@@ -28,12 +35,24 @@
                 <div class="card" x>
                     <div class="card-body">
                         <h5 class="card-title">
+                          
                             <%=el.name%>
                         </h5>
                         <p class="card-text">
                             <%=el.description%>
                         </p>
-                        <a href="/courses/<%=el.id%>" class="btn btn-primary">Do Course</a>
+                        <a href="/courses?applyCourse=<%=el.id%>" class="btn btn-primary">Apply Course</a>
+                  
+                        <% if(CourseId == el.id){%>
+                            <a href="/courses/<%=el.id%>" class="btn btn-primary">Do Course</a>
+                            <%}%>
+                         
+
+                   
+
+                        <% if (Role =='admin'){%>
+                            <a href="/courses/<%=el.id%>/delete" class="btn btn-primary">Delete Course</a>
+                            <%}%>
                     </div>
                 </div>
             </div>
