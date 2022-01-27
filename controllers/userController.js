@@ -50,15 +50,18 @@ class Controller {
         User.findOne({
             where: {
                 username : email
+                
             }
         })   
         .then(user => {
             if (user) {
-                console.log(user, "<>><><><>user");
-                console.log(user.id, "<>><><><>user.id");
+                console.log(user, "<>>>><>BELUM DI TAMBHAKAN");
                 const isValidatPassword = bcrypt.compareSync(password, user.password)
                 if (isValidatPassword) {
                     req.session.userId = user.id
+                    req.session.coursesId = user.CourseId
+                    console.log(req.session, "<>><><><>session");
+                    console.log(user, "<>><><><>SUDAH DI TAMBAHKAN");
                     return res.redirect("/courses")
                 } else {
                     const error = "invalid email or password"
@@ -70,9 +73,18 @@ class Controller {
             }
         })
         .catch(err => {
-            console.log(err, "<><><><><>");
             res.send(err)
         }) 
+    }
+    static getLogout (req, res) {
+        req.session.destroy((err => {
+            if (err) {
+                res.send(err)
+                
+            } else {
+                res.redirect("/")
+            }
+        }))
     }
 }
 
