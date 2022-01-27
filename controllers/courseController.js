@@ -35,7 +35,7 @@ class Controller {
                 return Course.findAll(options)
             })
             .then(data => {
-               
+               console.log(data[0].dataValues.Category.name, '>>>>>><<<<<')
                 console.log(req.session.role)
                 let Role = req.session.role
                 let CourseId = req.session.courseId
@@ -49,10 +49,11 @@ class Controller {
     static doCourse(req, res) {
         let id = req.params.id
 
-        Course.findByPk(id)
+        Course.findByPk(id, {include: Category})
             .then(data => {
                 let link = getYoutube
-                res.render('course', { data: data, link: link })
+                let getDate = Course.dateFormat(data.createdAt)
+                res.render('course', { data: data, Category:Category, link: link, getDate:getDate})
             })
             .catch(err => {
                 res.send(err)
