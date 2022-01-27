@@ -20,11 +20,7 @@ router.get('/', Controller.getLogin)
 router.post('/', Controller.postLogin)
 router.get('/register', Controller.getRegister)
 router.post('/register', Controller.postRegister)
-
-router.use(function (req, res, next) {
-    console.log('Time:', Date.now())
-    next()
-  })
+router.get('/logout', Controller.getLogout)
 
 
 module.exports = router
