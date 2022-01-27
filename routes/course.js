@@ -13,6 +13,7 @@ router.use(function (req, res, next) {
 
 router.get('/', CourseController.findAllCourses)
 router.get('/:id', CourseController.doCourse)
+router.get('/:id/delete', CourseController.courseDelete)
 
 
 
