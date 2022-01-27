@@ -1,6 +1,7 @@
 
 
 const {Course} = require('../models')
+const getYoutube = require('../helpers/getYoutube')
 
 class Controller{
 
@@ -17,7 +18,8 @@ class Controller{
         let id = req.params.id 
         Course.findByPk(id)
         .then(data =>{
-            res.render('course', {data})
+            let link = getYoutube
+            res.render('course', {data: data, link:link})
         })
         .catch(err =>{
             res.send(err)
