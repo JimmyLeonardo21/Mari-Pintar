@@ -22,9 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         notEmpty:{
           msg: 'Please enter your e-mail'
-        },
-        isEmail:{
-          msg:'Must be an e-mail.'
         }
       }
     },
@@ -50,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     hooks:{
       beforeCreate: (data, options) =>{
-        data.role = 'Newbie'
+        data.Role = 'Newbie'
       }
     },
     modelName: 'User',
