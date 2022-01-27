@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const dayJs = require('dayjs')
 module.exports = (sequelize, DataTypes) => {
   class Course extends Model {
     /**
@@ -14,11 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       Course.belongsTo(models.Category)
       Course.hasMany(models.User)
     }
-    static dateFormat(instance){
-      let dt2 = new Date()
-      var diff =(dt2.getTime() - instance.createdDate.getTime()) / 1000;
-      diff /= (60 * 60);
-      return Math.abs(Math.round(diff))
+    static dateFormat(date){
+      return dayJs(date).format('DD MMM YYYY')
+      // let dt2 = new Date()
+      // var diff =(dt2.getTime() - instance.createdDate.getTime()) / 1000;
+      // diff /= (60 * 60);
+      // return Math.abs(Math.round(diff))
      
     }
     getMinutes(){
