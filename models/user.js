@@ -12,11 +12,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.belongsTo(models.Course)
+      User.hasOne(models.Profile)
     }
   };
   User.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username:{
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          msg: 'Please enter your e-mail'
+        },
+        isEmail:{
+          msg:'Must be an e-mail.'
+        }
+      }
+    },
+
+    password: {
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          msg: 'Please enter a password'
+        },
+        len: [5,15]
+      }
+    },
     CourseId: DataTypes.INTEGER
   }, {
     hooks: {
@@ -27,6 +48,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     sequelize,
+    hooks:{
+      beforeCreate: (data, options) =>{
+        data.role = 'Newbie'
+      }
+    },
     modelName: 'User',
   });
   return User;

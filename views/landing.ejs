@@ -1,0 +1,33 @@
+<%-include('./partials/upper.ejs')%>
+<%-include('./partials/bootstrap.ejs')%>
+
+
+    <title>Avaliable Courses</title>
+</head>
+
+<body>
+    <h1 class="text-center">Avaliable Courses</h1>
+    <br><br><br>
+    <%data.forEach(el=>{%>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card" x>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%=el.name%>
+                        </h5>
+                        <p class="card-text">
+                            <%=el.description%>
+                        </p>
+                        <a href="/courses/<%=el.id%>" class="btn btn-primary">Do Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%})%>
+
+
+</body>
+
+</html>
