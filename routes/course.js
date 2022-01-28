@@ -12,8 +12,13 @@ router.use(function (req, res, next) {
   })
 
 router.get('/', CourseController.findAllCourses)
+router.get('/add', CourseController.createCourse)
+router.post('/add', CourseController.createCoursePost)
+
+router.get('/chart', CourseController.courseData)
 router.get('/:id', CourseController.doCourse)
 router.get('/:id/delete', CourseController.courseDelete)
+
 
 
 

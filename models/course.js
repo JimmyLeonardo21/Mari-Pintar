@@ -15,28 +15,67 @@ module.exports = (sequelize, DataTypes) => {
       Course.belongsTo(models.Category)
       Course.hasMany(models.User)
     }
-    static dateFormat(date){
+    static dateFormat(date) {
       return dayJs(date).format('DD MMM YYYY')
       // let dt2 = new Date()
       // var diff =(dt2.getTime() - instance.createdDate.getTime()) / 1000;
       // diff /= (60 * 60);
       // return Math.abs(Math.round(diff))
-     
+
     }
-    getMinutes(){
+    getMinutes() {
       let duration = `${this.duration} minutes`
       return duration
     }
-    static getLength(input){
+    static getLength(input) {
 
     }
   };
   Course.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    duration: DataTypes.INTEGER,
-    videoUrl: DataTypes.STRING,
-    CategoryId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Please enter course name.'
+        }
+
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Please enter course description.'
+        }
+      }
+    },
+    duration: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          msg: 'Please enter course duration.'
+        }
+
+      }
+    },
+    videoUrl: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Please enter course url.'
+        }
+
+      }
+    },
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          msg: 'Please enter course category.'
+        }
+
+      }
+    },
   }, {
     sequelize,
     modelName: 'Course',
