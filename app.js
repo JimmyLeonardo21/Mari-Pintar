@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 const router = require('./routes/index')
 const session = require('express-session')
-const port = 3000
+const port = process.env.PORT || 3000
+console.log(process.env.PORT)
 
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
