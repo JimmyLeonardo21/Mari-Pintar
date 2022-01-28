@@ -59,6 +59,7 @@ class Controller {
                 if (isValidatPassword) {
                     req.session.userId = user.id
                     req.session.courseId = user.CourseId
+                    req.session.role = user.Role
                     
                     return res.redirect("/courses")
                 } else {
@@ -84,6 +85,7 @@ class Controller {
             }
         }))
     }
+    
 }
 
 module.exports= Controller
