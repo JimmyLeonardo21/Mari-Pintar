@@ -10,21 +10,9 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  console.log(config, '<<<<<< if')
-  sequelize = new Sequelize(process.env[config.use_env_variable], {...config, dialectOptions: {
-    ssl: {
-        require: true,
-        rejectUnauthorized: false
-    }
-}});
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  console.log(config, '<<<el')
-  sequelize = new Sequelize(config.database, config.username, config.password, {...config, dialectOptions: {
-    ssl: {
-        require: true,
-        rejectUnauthorized: false
-    }
-}});
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs
